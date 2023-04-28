@@ -28,6 +28,7 @@ function displayData(photographer) {
 }
 
 async function displayGalery(name) {
+    const gallery = document.querySelector(".photograph-gallery-wrapper");
     const urlName = name.split(" ").join("");
     const urlNames = urlName.split("-").join("");
     const url = `assets/galery/${urlNames}/`;
@@ -35,10 +36,30 @@ async function displayGalery(name) {
     const body = await response.text();
     const parser = new DOMParser();
     const html = parser.parseFromString(body, "text/html");
+    console.log(html)
     const images = Array.from(html.querySelectorAll(".icon-jpg")).map(
-        (a) => a.getAttribute("href")
-    );
-    console.log(images)
+        (a) => { let photo = {
+            src: '',
+            title: '',
+        } ;
+            photo.src = a.getAttribute("href");
+            const title = a.getAttribute("title").split(".")
+            const realTitle = title[0].split('_').join(" ")
+            photo.title = realTitle;
+            const imageBloc = document.createElement("div");
+            const h3 = document.createElement("h3");
+            h3.classList.add("photograph-gallery__title");
+            h3.textContent = photo.title;
+            const img = document.createElement("img");
+            img.classList.add("photograph-gallery__img");
+            img.setAttribute('src', photo.src);
+            img.setAttribute('title', photo.title);
+            img.setAttribute('alt', photo.title);
+            imageBloc.appendChild(img)
+            imageBloc.appendChild(h3)
+            gallery.appendChild(imageBloc);
+        }
+    );   
     return images;
     
 }
