@@ -29,33 +29,35 @@ function displayData(photographer) {
 
 async function displayGalery(name) {
     const gallery = document.querySelector(".photograph-gallery-wrapper");
-    const urlName = name.split(" ").join("");
-    const urlNames = urlName.split("-").join("");
-    const url = `assets/galery/${urlNames}/`;
-    const response = await fetch(url);
-    const body = await response.text();
-    const parser = new DOMParser();
-    const html = parser.parseFromString(body, "text/html");
-    console.log(html)
-    const images = Array.from(html.querySelectorAll(".icon-jpg")).map(
-        (a) => { let photo = {
-            src: '',
-            title: '',
-        } ;
-            photo.src = a.getAttribute("href");
-            const title = a.getAttribute("title").split(".")
-            const realTitle = title[0].split('_').join(" ")
-            photo.title = realTitle;
+    const urlName = name.split(" ");
+    const photographerName = urlName[0].split("-").join(" ");
+    console.log(photographerName);   
+    const url = `assets/galery/${photographerName}/`;
+    // Je dois récupérer toutes les images du photographe
+    const data = await fetch('./data/photographers.json').then(r => r.json());
+    const images = data.media.filter(photo => photo.photographerId == idProfil)
+    console.log(images)
+    images.map(
+        photo => {
             const imageBloc = document.createElement("div");
             const h3 = document.createElement("h3");
             h3.classList.add("photograph-gallery__title");
             h3.textContent = photo.title;
-            const img = document.createElement("img");
-            img.classList.add("photograph-gallery__img");
-            img.setAttribute('src', photo.src);
-            img.setAttribute('title', photo.title);
-            img.setAttribute('alt', photo.title);
-            imageBloc.appendChild(img)
+            if (photo.hasOwnProperty('image')) {
+                const img = document.createElement("img");
+                img.classList.add("photograph-gallery__img");
+                img.setAttribute('src', `${url}/${photo.image}`);
+                img.setAttribute('title', photo.title);
+                img.setAttribute('alt', photo.title);
+                imageBloc.appendChild(img)
+            } else if (photo.hasOwnProperty('video')) {
+                const video = document.createElement('embed');
+                video.classList.add("photograph-gallery__img")
+                video.setAttribute('src', `${url}/${photo.video}`)
+                video.setAttribute('title', photo.video)
+                video.setAttribute('alt', photo.video)
+                imageBloc.appendChild(video)
+            }
             imageBloc.appendChild(h3)
             gallery.appendChild(imageBloc);
         }
@@ -68,3 +70,8 @@ photographerData().then(photographer => {
     displayData(photographer);
     displayGalery(photographer.name);
 })
+
+// Gestion de la modal contact
+
+
+// Gestion de la lightbox modal
