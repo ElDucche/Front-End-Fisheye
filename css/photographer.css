@@ -73,13 +73,33 @@
     object-fit: cover;
 }
 
+.photographer-gallery__infos {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .photograph-gallery__title {
     font-size: 1.2rem;
     color: #901C1C;
 }
 
-.infos {
+.likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #901C1C;
+    font-size: 1.5rem;
+}
+.likes > i {
+    margin-left: .5rem;
+    cursor: pointer;
+}
 
+.likes > i:active {
+    transform: scale(0.9);
+    tansition-duration:150ms;
 }
 
 .contact_button {
@@ -106,11 +126,9 @@
     padding: 35px;
     margin: auto;
     position: absolute;
-    top: 25%;
+    top: 5%;
     left: 25%;
 }
-
-
 
 .modal header {
     justify-content: space-between;
@@ -127,10 +145,11 @@
     text-align: center;
 }
 
-main {
+main, header {
     width: 80%;
     margin: auto
 }
+
 
 form {
     display: flex;
@@ -142,6 +161,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+    width: 100%;
 }
 
 form div {
@@ -157,4 +177,103 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#message {
+    height: 136px;
+    width:100%;
+    border-radius: 5px;
+}
+
+.photographer-dailyPrice {
+    position: fixed;
+    bottom: 0;
+    right: 2rem;
+    display: flex;
+    background-color: #DB8876;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: .5rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.photographer-dailyPrice > p {
+    padding : .75rem;
+    margin: 0;
+}
+
+.photographer-dailyPrice > p  > i{
+    padding-left : .5rem;
+}
+
+#lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    color: #901c1c;
+    background-color: white;
+}
+
+.box-modal {
+    width: 75%;
+    height:100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.box-modal_infos {
+    width:60%;
+    margin:auto;
+}
+.box-modal_infos > img, video {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+} 
+
+.box-modal_infos > h3 {
+    font-size: 2rem;
+}
+
+.box-modal > button {
+    font-size: 4rem;
+    border: none;
+    color: #901c1c;
+    background: none;
+    cursor: pointer;
+}
+
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 4rem;
+    border: none;
+    color: #901c1c;
+    background: none;
+    cursor : pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+select {
+    background: #901c1c;
+    color: #FFF;
+    font-weight 600;
+    border-radius: 5px;
+    outline: none;
+}
+
+.lightButton {
+    font-size: 0.01rem;
+    opacity: 0;
 }

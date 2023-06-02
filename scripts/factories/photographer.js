@@ -7,6 +7,7 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.setAttribute('alt', `Photo de ${name}`)
         const link = document.createElement('a');
         link.href = `./photographer.html?id=${id}`
         link.appendChild(img);

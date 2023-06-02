@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fbb9c61f33.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye"/>
       </a>
     </header>
     <main id="main">
@@ -20,10 +21,10 @@
       <div class="photograph-gallery">
         <label class="photograph-gallery-input">
           <h2>Trier par</h2>
-          <select>
-            <option value="Popularité">Popularité</option>
-            <option value="Date">Date</option>
-            <option value="Titre">Titre</option>
+          <select onchange="sorted(event.currentTarget.value)">
+            <option value="" selected>Filtres</option>
+            <option value="likes">Popularité</option>
+            <option value="title">Titre</option>
           </select>
         </label>
         <div class="photograph-gallery-wrapper"></div>
@@ -32,18 +33,40 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal-title">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" alt='Fermer la modal' onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label>Prénom
+              <input />
+            </label>
+            <label>Nom
+              <input />
+            </label>
+            <label>Email
+              <input />
+            </label>
+            <label>Votre message
+              <textarea id="message"></textarea>
+            </label>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox-modal"> 
+      <button onclick="closeLightBox()" class="closeButton"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
+      <div class="box-modal">
+        <button onclick="showPreviousImage()"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
+        <div class="box-modal_infos">
+          <img id="lightbox-img" src="">
+          <video id="lightbox-video" src="" autoplay controls></video>
+          <h3 id="lightbox-title"></h3>
+        </div>
+        <button onclick="showNextImage()"><i class="fa-solid fa-chevron-right"><span class="lightButton">right</span></i></button>
+      </div>
+    </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
