@@ -11,7 +11,7 @@ let url = ""
 
 // Utilisation de l'id du profil pour récupérer les données associées
 async function photographerData() {
-    const photographer = await fetch('/data/photographers.json').then(r => r.json()).then(r => r.photographers)
+    const photographer = await fetch('https://elducche.github.io/Front-End-Fisheye/data/photographers.json').then(r => r.json()).then(r => r.photographers)
     let photographerProfil ;
     for (let i=0; i< photographer.length ; i++) {
         if (photographer[i].id == idProfil) {
@@ -48,7 +48,7 @@ async function displayGalery(name, filtre = "") {
     const photographerName = urlName[0].split("-").join(" "); 
     const url = `assets/galery/${photographerName}`;
     // Je dois récupérer toutes les images du photographe
-    const data = await fetch('./data/photographers.json').then(r => r.json());
+    const data = await fetch('https://elducche.github.io/Front-End-Fisheye/data/photographers.json').then(r => r.json());
     const images = data.media.filter(photo => photo.photographerId == idProfil);
     console.log(filtre);
     if (filtre === "likes") {
