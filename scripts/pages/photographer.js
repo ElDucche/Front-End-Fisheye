@@ -49,12 +49,12 @@ async function displayGalery(name, filtre = '') {
   document.querySelector('.photograph-gallery').appendChild(gallery);
   const urlName = name.split(' ');
   const photographerName = urlName[0].split('-').join(' ');
-  const url = `assets/galery/${photographerName}`;
+  url = `assets/galery/${photographerName}`;
   // Je dois récupérer toutes les images du photographe
   const data = await fetch(
     'https://elducche.github.io/Front-End-Fisheye/data/photographers.json',
   ).then((r) => r.json());
-  const images = data.media.filter((photo) => photo.photographerId === idProfil);
+  images = data.media.filter((photo) => photo.photographerId === idProfil);
   if (filtre === 'likes') {
     images.sort((a, b) => b.likes - a.likes);
   } else if (filtre === 'title') {
@@ -89,14 +89,14 @@ async function displayGalery(name, filtre = '') {
     like.appendChild(number);
     like.appendChild(icon);
     const media = document.createElement('div');
-    if (photo.hasOwnProperty('image')) {
+    if (Object.prototype.hasOwnProperty.call(photo, 'image')) {
       const img = document.createElement('img');
       img.classList.add('photograph-gallery__img');
       img.setAttribute('src', `${url}/${photo.image}`);
       img.setAttribute('title', photo.title);
       img.setAttribute('alt', `${photo.title}`);
       media.appendChild(img);
-    } else if (photo.hasOwnProperty('video')) {
+    } else if (Object.prototype.hasOwnProperty.call(photo, 'video')) {
       const video = document.createElement('video');
       video.classList.add('photograph-gallery__img');
       video.setAttribute('src', `${url}/${photo.video}`);
@@ -113,7 +113,7 @@ async function displayGalery(name, filtre = '') {
     imageBloc.style.cursor = 'pointer';
     imageBloc.appendChild(imageInfo);
     gallery.appendChild(imageBloc);
-    // return photo;
+    return photo;
   });
   const photograph = data.photographers.filter(
     (photographer) => photographer.id === idProfil,
@@ -132,6 +132,7 @@ async function displayGalery(name, filtre = '') {
   return images;
 }
 
+/* d launchLightBox */
 function launchLightBox(event) {
   const mediaId = event.currentTarget.id;
   const id = mediaId.split('-')[1];
@@ -143,7 +144,7 @@ function launchLightBox(event) {
   const title = document.getElementById('lightbox-title');
   const img = document.getElementById('lightbox-img');
   const video = document.getElementById('lightbox-video');
-  if (images[currentIndex].hasOwnProperty('image')) {
+  if (Object.prototype.hasOwnProperty.call(images[currentIndex], 'image')) {
     video.style.display = 'none';
     img.style.display = 'block';
     img.setAttribute('src', `${url}/${images[currentIndex].image}`);
@@ -156,15 +157,16 @@ function launchLightBox(event) {
   }
   title.textContent = images[currentIndex].title;
 }
+/* d showNextImage */
 function showNextImage() {
-  currentIndex++;
+  currentIndex += 1;
   if (currentIndex >= images.length) {
     currentIndex = 0;
   }
   const title = document.getElementById('lightbox-title');
   const img = document.getElementById('lightbox-img');
   const video = document.getElementById('lightbox-video');
-  if (images[currentIndex].hasOwnProperty('image')) {
+  if (Object.prototype.hasOwnProperty.call(images[currentIndex], 'image')) {
     video.style.display = 'none';
     img.style.display = 'block';
     img.setAttribute('src', `${url}/${images[currentIndex].image}`);
@@ -177,16 +179,16 @@ function showNextImage() {
   }
   title.textContent = images[currentIndex].title;
 }
-
+/* d showPreviousImage */
 function showPreviousImage() {
-  currentIndex--;
+  currentIndex -= 1;
   if (currentIndex < 0) {
     currentIndex = images.length - 1;
   }
   const title = document.getElementById('lightbox-title');
   const img = document.getElementById('lightbox-img');
   const video = document.getElementById('lightbox-video');
-  if (images[currentIndex].hasOwnProperty('image')) {
+  if (Object.prototype.hasOwnProperty.call(images[currentIndex], 'image')) {
     video.style.display = 'none';
     img.style.display = 'block';
     img.setAttribute('src', `${url}/${images[currentIndex].image}`);
@@ -207,9 +209,10 @@ function closeLightBox() {
 
 // Fonction like()
 const likes = (event) => {
+  const element = event.currentTarget;
   const n = Number(event.currentTarget.querySelector('p').innerText) + 1;
   const total = Number(document.querySelector('.totalLikes').innerText) + 1;
-  event.currentTarget.querySelector('p').innerText = n;
+  element.querySelector('p').innerText = n;
   document.querySelector(
     '.totalLikes',
   ).innerHTML = `${total} <i class="fa-solid fa-heart"></i>`;
@@ -221,11 +224,9 @@ const sorted = (filtre) => {
     displayGalery(photographer.name, filtre);
   });
 };
-
-const profil = null;
 photographerData().then((photographer) => {
   displayData(photographer);
   displayGalery(photographer.name).then(
-    (loadedImages) => (images = loadedImages),
+    (loadedImages) => { images = loadedImages; return loadedImages; },
   );
 });
