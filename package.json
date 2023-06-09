@@ -1,25 +1,15 @@
 {
-  "name": "front-end-fisheye",
+  "name": "front-end-fisheye-9edc136e1d6e285e7aac13e025d49d4d67212cca",
   "version": "1.0.0",
   "description": "## Démarrer le projet",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ElDucche/Front-End-Fisheye.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "author": "Guillaume LEDUC",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ElDucche/Front-End-Fisheye/issues"
-  },
-  "homepage": "https://github.com/ElDucche/Front-End-Fisheye#readme",
-  "devDependencies": {
-    "eslint": "^8.41.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
-  },
-  "type": "commonjs"
+  "dependencies": {
+    "eslint": "^8.42.0"
+  }
 }

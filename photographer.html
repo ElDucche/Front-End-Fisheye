@@ -19,9 +19,9 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="photograph-gallery">
-        <label class="photograph-gallery-input" for="filtre">
+        <label class="photograph-gallery-input">
           <h2>Trier par</h2>
-          <select onchange="sorted(event.currentTarget.value)" id="filtre">
+          <select onchange="sorted(event.currentTarget.value)">
             <option value="" selected>Filtres</option>
             <option value="likes">Popularité</option>
             <option value="title">Titre</option>
@@ -44,10 +44,10 @@
             <label>Nom
               <input />
             </label>
-            <label for="mail">Email
-              <input id="mail"/>
+            <label>Email
+              <input />
             </label>
-            <label for="message">Votre message
+            <label>Votre message
               <textarea id="message"></textarea>
             </label>
 					</div>
@@ -56,7 +56,7 @@
 			</div>
 		</div>
     <div id="lightbox-modal"> 
-      <button onclick="closeLightBox()" class="closeButton"><em class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></em></button>
+      <button onclick="closeLightBox()" class="closeButton"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
       <div class="box-modal">
         <button onclick="showPreviousImage()"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
         <div class="box-modal_infos">
