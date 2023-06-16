@@ -39,16 +39,16 @@
 				<form>
 					<div>
 						<label>Prénom
-              <input />
+              <input type="text"/>
             </label>
             <label>Nom
-              <input />
+              <input type="text"/>
             </label>
             <label>Email
-              <input />
+              <input type="email"/>
             </label>
             <label>Votre message
-              <textarea id="message"></textarea>
+              <textarea id="message" placeholder="Entrez votre message"></textarea>
             </label>
 					</div>
           <button class="contact_button">Envoyer</button>
@@ -60,7 +60,7 @@
       <div class="box-modal">
         <button onclick="showPreviousImage()" aria-label="Previous image"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
         <div class="box-modal_infos">
-          <img id="lightbox-img" src="">
+          <img id="lightbox-img" src="" alt="Empty lightbox image">
           <video id="lightbox-video" src="" autoplay controls></video>
           <h3 id="lightbox-title"></h3>
         </div>
