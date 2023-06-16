@@ -11,7 +11,7 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye"/>
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
     <main id="main">
@@ -21,7 +21,7 @@
       <div class="photograph-gallery">
         <label class="photograph-gallery-input">
           <h2>Trier par</h2>
-          <select onchange="sorted(event.currentTarget.value)">
+          <select onchange="sorted(event.currentTarget.value)" aria-labelledby="Order by">
             <option value="" selected>Filtres</option>
             <option value="likes">Popularité</option>
             <option value="title">Titre</option>
@@ -56,15 +56,15 @@
 			</div>
 		</div>
     <div id="lightbox-modal"> 
-      <button onclick="closeLightBox()" class="closeButton"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
+      <button onclick="closeLightBox()" class="closeButton" aria-label="Close dialog"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
       <div class="box-modal">
-        <button onclick="showPreviousImage()"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
+        <button onclick="showPreviousImage()" aria-label="Previous image"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
         <div class="box-modal_infos">
           <img id="lightbox-img" src="">
           <video id="lightbox-video" src="" autoplay controls></video>
           <h3 id="lightbox-title"></h3>
         </div>
-        <button onclick="showNextImage()"><i class="fa-solid fa-chevron-right"><span class="lightButton">right</span></i></button>
+        <button onclick="showNextImage()" aria-label="Next image"><i class="fa-solid fa-chevron-right"><span class="lightButton">right</span></i></button>
       </div>
     </div>
     <script src="scripts/pages/photographer.js"></script>

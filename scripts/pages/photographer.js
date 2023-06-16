@@ -118,6 +118,7 @@ async function displayGalery(name, filtre = "") {
     dailyPrice.setAttribute('id', 'dailyPrice')
     const totalLike = document.createElement('p')
     totalLike.classList.add('totalLikes');
+    totalLike.setAttribute('aria-label', 'likes')
     totalLike.innerHTML = `${images.reduce((acc, photo) => {return acc + photo.likes}, 0)}<i class="fa-solid fa-heart"></i>`
     const price = document.createElement('p')
     price.textContent = `${photograph[0].price}€ / jour`
