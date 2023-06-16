@@ -21,10 +21,10 @@
       <div class="photograph-gallery">
         <div  class="photograph-gallery-input">
 
-          <label class="photograph-gallery-input" for="name">
+          <label class="photograph-gallery-input" for="filtre">
             Trier par
           </label>
-          <select onchange="sorted(event.currentTarget.value)" aria-label="Order by" name="filtre">
+          <select onchange="sorted(event.currentTarget.value)" id="filtre" aria-label="Order by" name="filtre">
             <option value="" selected>Filtres</option>
             <option value="likes">Popularité</option>
             <option value="title">Titre</option>
@@ -41,16 +41,16 @@
         </header>
 				<form>
 					<div>
-						<label for="name">Prénom
+						<label for="prenom">Prénom
             </label>
             <input type="text" name="prenom"/>
-            <label for="name">Nom
+            <label for="nom">Nom
             </label>
             <input type="text" name="nom"/>
-            <label for="name">Email
+            <label for="email">Email
             </label>
             <input type="email" name="email"/>
-            <label for="name">Votre message
+            <label for="message">Votre message
             </label>
             <input id="message" type="text" name="message" placeholder="Entrez votre message">
 					</div>
