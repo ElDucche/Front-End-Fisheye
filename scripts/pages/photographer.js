@@ -129,13 +129,17 @@ async function displayGalery(name, filtre = "") {
 }
 
 function launchLightBox(event) {
+
     const mediaId = event.currentTarget.id
+    document.querySelector('main').setAttribute('aria-hidden', true);
+    document.querySelector('body').classList.add('no-scroll')
     const id = mediaId.split("-")[1]
     const index = images.findIndex(image => image.id === +id);
     url = event.currentTarget.dataset.url;
     currentIndex = index
     const lightbox = document.getElementById("lightbox-modal");
     lightbox.style.display = 'block'
+    lightbox.setAttribute('aria-hidden', 'false');
     const title = document.getElementById('lightbox-title');
     const img = document.getElementById('lightbox-img');
     const video = document.getElementById('lightbox-video')
@@ -198,7 +202,11 @@ function showPreviousImage() {
 
 function closeLightBox() {
     const lightbox = document.getElementById("lightbox-modal");
+    document.querySelector('main').setAttribute('aria-hidden', 'false')
+    document.querySelector('body').classList.remove('no-scroll')
     lightbox.style.display = 'none'
+    lightbox.setAttribute('aria-hidden', 'true')
+    
 }
 
 
@@ -222,3 +230,21 @@ photographerData().then(photographer => {
     displayData(photographer);
     displayGalery(photographer.name).then((loadedImages) => images = loadedImages);
 })
+
+// Keyboard Event
+window.addEventListener('keydown', (e) => {
+    document.getElementById('lightbox-modal').style.display === 'none' ? "" : 
+    keyboardModalEvent(e); 
+})
+
+function keyboardModalEvent(e) {
+    const keyCode = e.keyCode ? e.keyCode : e.which
+ 
+   if (keyCode === 39) {
+       showNextImage()
+   } else if (keyCode === 37) {
+       showPreviousImage()
+   } else if (keyCode === 27) {
+    closeLightBox();
+   }
+}

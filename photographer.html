@@ -14,14 +14,14 @@
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="photograph-gallery">
         <label class="photograph-gallery-input">
           <h2>Trier par</h2>
-          <select onchange="sorted(event.currentTarget.value)" aria-labelledby="Order by">
+          <select onchange="sorted(event.currentTarget.value)" aria-label="Order by">
             <option value="" selected>Filtres</option>
             <option value="likes">Popularité</option>
             <option value="title">Titre</option>
@@ -55,7 +55,7 @@
 				</form>
 			</div>
 		</div>
-    <div id="lightbox-modal"> 
+    <div id="lightbox-modal" role="dialog" aria-hidden="true"> 
       <button onclick="closeLightBox()" class="closeButton" aria-label="Close dialog"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
       <div class="box-modal">
         <button onclick="showPreviousImage()" aria-label="Previous image"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>

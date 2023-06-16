@@ -249,6 +249,9 @@ form input {
     background: none;
     cursor: pointer;
 }
+.no-scroll {
+    overflow: hidden; 
+}
 
 .closeButton {
     position: absolute;
