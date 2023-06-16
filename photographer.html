@@ -48,7 +48,7 @@
               <input type="email" name="email"/>
             </label>
             <label for="name">Votre message
-              <textarea id="message" name="message" placeholder="Entrez votre message"></textarea>
+              <input id="message" type="text" name="message" placeholder="Entrez votre message">
             </label>
 					</div>
           <button class="contact_button">Envoyer</button>
@@ -56,15 +56,15 @@
 			</div>
 		</div>
     <div id="lightbox-modal" role="dialog" aria-hidden="true"> 
-      <button onclick="closeLightBox()" class="closeButton" aria-label="Close dialog"><i class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></i></button>
+      <button onclick="closeLightBox()" class="closeButton" aria-label="Close dialog"><em class="fa-sharp fa-solid fa-xmark"><span class="lightButton">close</span></em></button>
       <div class="box-modal">
-        <button onclick="showPreviousImage()" aria-label="Previous image"><i class="fa-solid fa-chevron-left"><span class="lightButton">left</span></i></button>
+        <button onclick="showPreviousImage()" aria-label="Previous image"><em class="fa-solid fa-chevron-left"><span class="lightButton">left</span></em></button>
         <div class="box-modal_infos">
           <img id="lightbox-img" src="" alt="Empty lightbox image">
           <video id="lightbox-video" src="" autoplay controls></video>
           <h3 id="lightbox-title"></h3>
         </div>
-        <button onclick="showNextImage()" aria-label="Next image"><i class="fa-solid fa-chevron-right"><span class="lightButton">right</span></i></button>
+        <button onclick="showNextImage()" aria-label="Next image"><em class="fa-solid fa-chevron-right"><span class="lightButton">right</span></em></button>
       </div>
     </div>
     <script src="scripts/pages/photographer.js"></script>
