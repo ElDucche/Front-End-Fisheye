@@ -129,9 +129,8 @@ async function displayGalery(name, filtre = "") {
 }
 
 function launchLightBox(event) {
-
     const mediaId = event.currentTarget.id
-    document.querySelector('main').setAttribute('aria-hidden', true);
+    document.querySelector('main').setAttribute('aria-hidden', 'true');
     document.querySelector('body').classList.add('no-scroll')
     const id = mediaId.split("-")[1]
     const index = images.findIndex(image => image.id === +id);
@@ -156,6 +155,7 @@ function launchLightBox(event) {
     }
     title.textContent = images[currentIndex].title
 }
+
 function showNextImage() {
     currentIndex++;
     if (currentIndex >= images.length) {
