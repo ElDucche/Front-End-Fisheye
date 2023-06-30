@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
       </a>
     </header>
     <main id="main" aria-hidden="false">
@@ -37,22 +37,22 @@
 			<div class="modal">
 				<header>
           <h2 id="modal-title">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt='Fermer la modal' onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt='Fermer la modal' onclick="closeModal()" >
         </header>
-				<form id="contact-form" role="form" onsubmit="submitContact(event)">
+				<form id="contact-form" onsubmit="submitContact(event)">
 					<div>
 						<label for="prenom">Prénom
             </label>
-            <input type="text" id="prenom" name="prenom" aria-label="First name"/>
+            <input type="text" id="prenom" name="prenom" aria-label="First name">
             <label for="nom">Nom
             </label>
-            <input type="text" id="nom" name="nom" aria-label="Laste name"/>
+            <input type="text" id="nom" name="nom" aria-label="Laste name">
             <label for="email">Email
             </label>
-            <input type="email" id="email" name="email" aria-label="Email"/>
+            <input type="email" id="email" name="email" aria-label="Email">
             <label for="message">Votre message
             </label>
-            <textarea id="message" type="text" name="message" aria-label="Your message"></textarea>
+            <textarea id="message" name="message" aria-label="Your message"></textarea>
 					</div>
           <button class="contact_button" type="submit" aria-label="Send">Envoyer</button>
 				</form>
@@ -63,9 +63,9 @@
       <div class="box-modal">
         <button onclick="showPreviousImage()" aria-label="Previous image"><em class="fa-solid fa-chevron-left"><span class="lightButton">left</span></em></button>
         <div class="box-modal_infos">
-          <img id="lightbox-img" src="" alt="Empty lightbox image">
-          <video id="lightbox-video" src="" autoplay controls></video>
-          <h3 id="lightbox-title"></h3>
+          <img id="lightbox-img" src="assets/images/logo.png" alt="Fisheye logo placeholder for empty lightbox image">
+          <video id="lightbox-video" src="assets/images/logo.png" autoplay controls></video>
+          <h3 id="lightbox-title">Placeholder title</h3>
         </div>
         <button onclick="showNextImage()" aria-label="Next image"><em class="fa-solid fa-chevron-right"><span class="lightButton">right</span></em></button>
       </div>
