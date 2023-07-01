@@ -21,6 +21,7 @@ async function photographerData() {
     return photographerProfil
 }
 
+// Affiche la partie Header de la page
 function displayData(photographer) {
     const header = document.querySelector('.photograph-header');
     const infos = document.createElement('div');
@@ -35,12 +36,15 @@ function displayData(photographer) {
     header.appendChild(photo);
 }
 
+// Gère l'affichage de la galery du photographe
 async function displayGalery(name, filtre = "") {
+    // Si la galerie existe déjà, la supprime
     if (document.getElementById('dailyPrice')) {
         document.getElementById('dailyPrice').remove();
     }
     document.querySelector('.photograph-gallery-wrapper').remove()
     
+    // On crée une nouvelle galerie, trier en fonction du filtre choisit par l'utilisateur
     const gallery = document.createElement("div");
     gallery.classList.add('photograph-gallery-wrapper')
     document.querySelector('.photograph-gallery').appendChild(gallery)
@@ -66,6 +70,7 @@ async function displayGalery(name, filtre = "") {
             return 0
         })
     }
+    // Une fois le tableau trier, on affiche l'image dans une div
     images.map(
         (photo) => {
             const imageBloc = document.createElement("div");
@@ -91,14 +96,14 @@ async function displayGalery(name, filtre = "") {
                 img.classList.add("photograph-gallery__img");
                 img.setAttribute('src', `${url}/${photo.image}`);
                 img.setAttribute('title', photo.title);
-                img.setAttribute('alt', `${photo.title}`);
+                img.setAttribute('alt', `${photo.desc}`);
                 media.appendChild(img)
             } else if (photo.hasOwnProperty('video')) {
                 const video = document.createElement('video');
                 video.classList.add("photograph-gallery__img")
                 video.setAttribute('src', `${url}/${photo.video}`)
                 video.setAttribute('title', photo.video)
-                video.setAttribute('alt', photo.video)
+                video.setAttribute('alt', photo.desc)
                 media.appendChild(video)
             }
             media.setAttribute('data-url', url);
@@ -112,6 +117,7 @@ async function displayGalery(name, filtre = "") {
             gallery.appendChild(imageBloc);
         }
     );
+    // Gère l'affichage des données de la page (nb de likes, prix journalier)
     const photograph = data.photographers.filter(photographer => photographer.id == idProfil)
     const dailyPrice = document.createElement('div');
     dailyPrice.classList.add('photographer-dailyPrice');
@@ -128,6 +134,8 @@ async function displayGalery(name, filtre = "") {
     return images;
 }
 
+// Logique de la lightbox
+// Lancement de la lightbox
 function launchLightBox(event) {
     const mediaId = event.currentTarget.id
     document.querySelector('main').setAttribute('aria-hidden', 'true');
@@ -146,16 +154,17 @@ function launchLightBox(event) {
         video.style.display = 'none';
         img.style.display = 'block';
         img.setAttribute('src', `${url}/${images[currentIndex].image}`)
-        img.setAttribute('alt', `Image de ${images[currentIndex].title}`)
+        img.setAttribute('alt', `Image de ${images[currentIndex].desc}`)
     } else {
         img.style.display = 'none';
         video.style.display = 'block';
         video.setAttribute('src', `${url}/${images[currentIndex].video}`)
-        video.setAttribute('alt', `Video ${images[currentIndex].title}`)
+        video.setAttribute('alt', `Video ${images[currentIndex].desc}`)
     }
     title.textContent = images[currentIndex].title
 }
 
+// Affichage de l'image suivante dans le tableau
 function showNextImage() {
     currentIndex++;
     if (currentIndex >= images.length) {
@@ -168,16 +177,17 @@ function showNextImage() {
         video.style.display = 'none';
         img.style.display = 'block';
         img.setAttribute('src', `${url}/${images[currentIndex].image}`)
-        img.setAttribute('alt', `Image de ${images[currentIndex].title}`)
+        img.setAttribute('alt', `Image de ${images[currentIndex].desc}`)
     } else {
         img.style.display = 'none';
         video.style.display = 'block';
         video.setAttribute('src', `${url}/${images[currentIndex].video}`)
-        video.setAttribute('alt', `Video ${images[currentIndex].title}`)
+        video.setAttribute('alt', `Video ${images[currentIndex].desc}`)
     }
     title.textContent = images[currentIndex].title
 }
 
+// Affichage de l'image précedente dans le tableau
 function showPreviousImage() {
     currentIndex--;
     if (currentIndex < 0) {
@@ -190,16 +200,17 @@ function showPreviousImage() {
         video.style.display = 'none';
         img.style.display = 'block';
         img.setAttribute('src', `${url}/${images[currentIndex].image}`)
-        img.setAttribute('alt', `Image de ${images[currentIndex].title}`)
+        img.setAttribute('alt', `Image de ${images[currentIndex].desc}`)
     } else {
         img.style.display = 'none';
         video.style.display = 'block';
         video.setAttribute('src', `${url}/${images[currentIndex].video}`)
-        video.setAttribute('alt', `Video ${images[currentIndex].title}`)
+        video.setAttribute('alt', `Video ${images[currentIndex].desc}`)
     }
     title.textContent = images[currentIndex].title
 }
 
+// Fermeture de la lightbox
 function closeLightBox() {
     const lightbox = document.getElementById("lightbox-modal");
     document.querySelector('main').setAttribute('aria-hidden', 'false')
@@ -225,6 +236,7 @@ const sorted = (filtre) => {
     })
 }
 
+// Initialisation de la page.
 let profil = null;
 photographerData().then(photographer => {
     displayData(photographer);
